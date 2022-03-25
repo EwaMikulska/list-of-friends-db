@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">List of Friends</string>
+    <string name="toast_error">Something gone wrong</string>
+</resources>

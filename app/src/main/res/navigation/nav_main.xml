@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/peopleListFragment">
+
+    <fragment
+        android:id="@+id/peopleListFragment"
+        android:name="com.ewa.mikulska.listoffriends.peoplelist.PeopleListFragment"
+        android:label="PeopleListFragment" >
+        <action
+            android:id="@+id/action_peopleListFragment_to_peopleDetailsFragment"
+            app:destination="@id/peopleDetailsFragment" />
+        <action
+            android:id="@+id/action_peopleListFragment_to_addPersonDialog"
+            app:destination="@id/addPersonDialog" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/peopleDetailsFragment"
+        android:name="com.ewa.mikulska.listoffriends.peopledetails.PeopleDetailsFragment"
+        android:label="PeopleDetailsFragment" >
+        <argument
+            android:name="personId"
+            app:argType="java.util.UUID" />
+        <action
+            android:id="@+id/action_peopleDetailsFragment_to_peopleListFragment"
+            app:destination="@id/peopleListFragment" />
+        <action
+            android:id="@+id/action_peopleDetailsFragment_to_personAddDescription"
+            app:destination="@id/personAddDescription" />
+    </fragment>
+
+    <dialog
+        android:id="@+id/addPersonDialog"
+        android:name="com.ewa.mikulska.listoffriends.addingfriend.AddFriendDialog"
+        android:label="AddPersonDialog" >
+        <action
+            android:id="@+id/action_addPersonDialog_to_peopleListFragment"
+            app:destination="@id/peopleListFragment" />
+        <action
+            android:id="@+id/action_addPersonDialog_to_datePickerDialog"
+            app:destination="@id/datePickerDialog" />
+    </dialog>
+    <dialog
+        android:id="@+id/datePickerDialog"
+        android:name="com.ewa.mikulska.listoffriends.addingfriend.DatePickerDialog"
+        android:label="DatePickerDialog" />
+    <dialog
+        android:id="@+id/personAddDescription"
+        android:name="com.ewa.mikulska.listoffriends.peopledetails.PersonAddDescriptionDialog"
+        android:label="PersonAddDescription" />
+
+
+
+</navigation>
