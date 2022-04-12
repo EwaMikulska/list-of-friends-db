@@ -20,7 +20,7 @@ class AddFriendViewModel(
     var name = String()
     var surname = String()
     var birthDate = LocalDate()
-    var imageURL = imageEmptyPhoto
+    var image: ByteArray? = null
 
     fun addNewFriend() {
         viewModelScope.launch {
@@ -29,21 +29,17 @@ class AddFriendViewModel(
                 return@launch
             }
             try {
-                imageURL?.let {
+                peopleRepository.addPerson(
                     Person(
                         id = UUID.randomUUID(),
                         name = name,
                         surname = surname,
                         birthDate = birthDate,
                         isFriend = isFriend,
-                        imageURL = it,
+                        image = image,
                         description = null
                     )
-                }?.let {
-                    peopleRepository.addPerson(
-                        it
-                    )
-                }
+                )
                 mutableEvent.value = MyEvent.DismissDialog
             } catch (
                 e: Exception

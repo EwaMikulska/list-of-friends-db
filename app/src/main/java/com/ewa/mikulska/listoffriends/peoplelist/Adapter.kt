@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.RequestManager
+import com.ewa.mikulska.listoffriends.R
 import com.ewa.mikulska.listoffriends.data.Person
 import com.ewa.mikulska.listoffriends.databinding.ViewHolderBinding
 
@@ -24,8 +25,11 @@ class Adapter(
 
         holder.binding.txtNameViewHolder.text = item.name
         holder.binding.txtSurnameViewHolder.text = item.surname
+        holder.binding.imageViewPersonViewHolder.setImageResource(R.drawable.blank_profile_photo)
 
-        glide?.load(item.imageURL)?.into(holder.binding.imageViewPersonViewHolder)
+        if (item.image != null) {
+            glide?.load(item.image)?.into(holder.binding.imageViewPersonViewHolder)
+        }
 
         if (item.isFriend) {
             holder.binding.floatingActionButtonFriendAdded.isVisible = true

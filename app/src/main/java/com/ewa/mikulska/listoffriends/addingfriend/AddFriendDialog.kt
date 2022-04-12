@@ -101,7 +101,7 @@ class AddFriendDialog : DialogFragment(), DatePickerDialog.Callback {
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             val imageBitmap = data?.extras?.get("data") as Bitmap
             val imageByteArray = BitmapConverter.fromBitmaptoByteArray(imageBitmap)
-            viewModel.imageURL = imageByteArray
+            viewModel.image = imageByteArray
         }
     }
 }

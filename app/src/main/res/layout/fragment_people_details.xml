@@ -14,8 +14,25 @@
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/background_details_fragment"
         app:layoutDescription="@xml/fragment_people_details_xml_constraintlayout_scene">
+
+        <ImageView
+            android:id="@+id/backgroundImage"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/background_details_fragment"
+            />
+
+        <ImageButton
+            android:layout_margin="20dp"
+            android:id="@+id/changeBackroundButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@drawable/ic_reload"
+            />
 
         <com.github.florent37.shapeofview.shapes.RoundRectView
             android:id="@+id/materialRoundView"
@@ -35,6 +52,7 @@
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
                 tools:srcCompat="@tools:sample/avatars" />
+
 
 
         </com.github.florent37.shapeofview.shapes.RoundRectView>

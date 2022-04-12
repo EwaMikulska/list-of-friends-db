@@ -51,7 +51,7 @@ class App : Application() {
     }
 
     @TypeConverters(DateTimeConverter::class, BitmapConverter::class)
-    @Database(entities = [Person::class], version = 9)
+    @Database(entities = [Person::class], version = 10)
     abstract class AppDatabase : RoomDatabase() {
         abstract fun personDao(): PersonDao
     }

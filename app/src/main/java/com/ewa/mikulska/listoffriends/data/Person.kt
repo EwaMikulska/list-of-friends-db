@@ -36,7 +36,7 @@ data class Person(
     val surname: String,
     val birthDate: LocalDate,
     val isFriend: Boolean,
-    val imageURL: ByteArray,
+    val image: ByteArray?,
     val description: String?
 ) : Serializable
 

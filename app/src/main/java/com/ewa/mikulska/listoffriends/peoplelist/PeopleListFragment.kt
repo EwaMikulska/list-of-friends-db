@@ -34,7 +34,7 @@ class PeopleListFragment : Fragment(), Adapter.Callback {
         adapter.glide = Glide.with(this)
         adapter.callback = this
 
-        //TODO: Search for a friend - two-way data binding - in process
+        //TODO: Searchview (filter friends) - in process
 
         binding.peopleRecyclerView.apply {
             adapter = this@PeopleListFragment.adapter
