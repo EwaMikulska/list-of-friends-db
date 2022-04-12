@@ -7,6 +7,7 @@ import java.util.*
 interface PeopleDataSource {
     fun getPeople(): LiveData<List<Person>>
     fun getPerson(id: UUID): LiveData<Person?>
+    fun searchDatabase(searchString: String): LiveData<List<Person>>
     suspend fun addPerson(person: Person)
     suspend fun changeFriend(person: Person, isFriend: Boolean)
     suspend fun removePerson(person: Person)

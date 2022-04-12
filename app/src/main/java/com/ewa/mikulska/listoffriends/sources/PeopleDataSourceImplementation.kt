@@ -32,4 +32,8 @@ class PeopleDataSourceImplementation (
     override fun getPerson(id: UUID): LiveData<Person?> {
         return database.personDao().getPerson(id)
     }
+
+    override fun searchDatabase(searchString: String): LiveData<List<Person>> {
+        return database.personDao().searchDatabase(searchString)
+    }
 }

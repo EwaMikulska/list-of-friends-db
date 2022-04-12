@@ -20,6 +20,10 @@ class PeopleRepositoryImplementation (
         return peopleDataSource.getPeople().map { it.firstOrNull { p -> p.id == id } }
     }
 
+    override fun searchDatabase(searchString: String): LiveData<List<Person>> {
+        return peopleDataSource.searchDatabase(searchString)
+    }
+
     override suspend fun addPerson(person: Person) {
         peopleDataSource.addPerson(person)
     }

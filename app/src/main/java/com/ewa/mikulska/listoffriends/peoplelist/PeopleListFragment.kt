@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
@@ -34,7 +35,22 @@ class PeopleListFragment : Fragment(), Adapter.Callback {
         adapter.glide = Glide.with(this)
         adapter.callback = this
 
-        //TODO: Searchview (filter friends) - in process
+
+        binding.searchViewFriend.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (query != null) {
+                    searchDatabase(query)
+                }
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText != null) {
+                    searchDatabase(newText)
+                }
+                return true
+            }
+        })
 
         binding.peopleRecyclerView.apply {
             adapter = this@PeopleListFragment.adapter
@@ -60,12 +76,21 @@ class PeopleListFragment : Fragment(), Adapter.Callback {
             } else if (it is PeopleListViewModel.MyEvent.ErrorFriend) {
                 Toast.makeText(context, it.message, Toast.LENGTH_SHORT).show()
                 val person = it.personPosition
-                val wynik = adapter.currentList.indexOfFirst {
+                val result = adapter.currentList.indexOfFirst {
                     it.id == person.id
                 }
-                if (wynik != -1) {
-                    adapter.notifyItemChanged(wynik)
+                if (result != -1) {
+                    adapter.notifyItemChanged(result)
                 }
+            }
+        }
+    }
+
+    private fun searchDatabase(query: String) {
+        val searchQuery = "%$query%"
+        viewModel.searchDatabase(searchQuery).observe(this) { list ->
+            list.let {
+                adapter.submitList(it)
             }
         }
     }

@@ -19,6 +19,10 @@ class PeopleListViewModel(
     private val mutableEvent = LiveEvent<MyEvent>()
     val event: LiveData<MyEvent> = mutableEvent
 
+    fun searchDatabase(searchString: String): LiveData<List<Person>> {
+        return peopleRepository.searchDatabase(searchString)
+    }
+
     fun removeFromFriends(person: Person) {
         viewModelScope.launch {
             try {

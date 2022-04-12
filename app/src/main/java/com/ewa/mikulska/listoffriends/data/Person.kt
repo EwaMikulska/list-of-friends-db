@@ -26,6 +26,9 @@ interface PersonDao {
 
     @Query("UPDATE Person SET description = :description WHERE id = :id")
     fun changeDescription(id: UUID, description: String)
+
+    @Query("SELECT * FROM Person WHERE name LIKE :searchString OR surname LIKE :searchString")
+    fun searchDatabase(searchString: String): LiveData<List<Person>>
 }
 
 @Entity
